@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love</title>
+</head>
+<body>
+<body>
+
+    <audio controls autoplay loop>
+        <source src="" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <div class="slideshow-container">
+        <button onclick="voltarImagem()">&#8592; Voltar</button>
+        <img id="slide" src="/src/1.jpg" style="width:100%; max-width:500px;">
+        <button onclick="avancarImagem()">Avançar &#8594;</button>
+    </div>
+
+    <script>
+        const imagens = ["1.jpg", "2.jpg"];
+        let indice = 0;
+        let intervalo = setInterval(trocarImagem, 2000);
+
+        function trocarImagem() {
+            indice = (indice + 1) % imagens.length;
+            document.getElementById('slide').src = imagens[indice];
+        }
+
+        function avancarImagem() {
+            clearInterval(intervalo);
+            indice = (indice + 1) % imagens.length;
+            document.getElementById('slide').src = imagens[indice];
+            intervalo = setInterval(trocarImagem, 2000);
+        }
+
+        function voltarImagem() {
+            clearInterval(intervalo);
+            indice = (indice - 1 + imagens.length) % imagens.length;
+            document.getElementById('slide').src = imagens[indice];
+            intervalo = setInterval(trocarImagem, 2000);
+        }
+    </script>
+
+    <div id="timer" style="font-size: 20px; margin-top: 20px;">
+    </div>
+
+    <script>
+        // ...existing slideshow code...
+
+        // Timer desde 22 de dezembro de 2023
+        function atualizarTimer() {
+            const inicio = new Date('2023-12-22T00:00:00');
+            const agora = new Date();
+            const diff = agora - inicio;
+
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / (1000 * 60)) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('timer').textContent =
+                `Já se passaram ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos desde 22/12/2023.`;
+        }
+
+        setInterval(atualizarTimer, 1000);
+        atualizarTimer();
+    </script>
+
+</body>
+
+</body>
+</html>
